@@ -1,39 +1,45 @@
 package io.test.xo.model;
+
 import io.test.xo.model.exception.InvalidPointException;
-import io.test.xo.model.exception.PointAlreadyOccupiedException;
 
-import java.awt.Point;
-public class Field {
-    private final static int MIN_COORDINATE = 0;
-    private final Figure[][] field;
-    private final int fieldSize;
+import java.awt.*;
+public class Field<T> {
 
-    public Field(final int fieldSize) {
-        this.fieldSize = fieldSize;
-        field = new Figure[fieldSize][fieldSize];
+    private static final int MIN_COORDINATE = 0;
+
+    private final T[][] field;
+
+    private final int filedSize;
+
+    public Field(final int filedSize) {
+        this.filedSize = filedSize;
+        field = (T[][]) new Object[filedSize][filedSize];
     }
 
     public int getSize() {
-        return fieldSize;
+        return filedSize;
     }
-    public Figure getFigure(final Point point) throws InvalidPointException {
-        if (!checkPoint(point)){
+
+    public T getFigure(final Point point) throws InvalidPointException {
+        if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         return field[point.x][point.y];
     }
-    public void setFigure( final Point point,
-                           final Figure figure) throws InvalidPointException {
+
+    public void setFigure(final Point point, final T figure) throws InvalidPointException {
         if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         field[point.x][point.y] = figure;
     }
-    private boolean checkPoint(final Point point){
-        return checkCoordinate(point.x, field.length)
-                && checkCoordinate(point.y, field[point.x].length);
+
+    private boolean checkPoint(final Point point) {
+        return checkCoordinate(point.x, field.length) && checkCoordinate(point.y, field[point.x].length);
     }
-    private boolean checkCoordinate(final int coordinate,final int maxCoordinate){
+
+    private boolean checkCoordinate(final int coordinate, final int maxCoordinate) {
         return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
     }
+
 }

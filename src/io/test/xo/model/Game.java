@@ -1,14 +1,17 @@
 package io.test.xo.model;
 
-public class Game {
+public class Game<F> {
+
     private final Player[] players;
-    private final Field field;
+
+    private final Field<F> field;
+
     private final String name;
 
-    public Game(final Player[] player,
-                final Field field,
+    public Game(final Player[] players,
+                final Field<F> field,
                 final String name) {
-        this.players = player;
+        this.players = players;
         this.field = field;
         this.name = name;
     }
@@ -17,11 +20,12 @@ public class Game {
         return players;
     }
 
-    public Field getField() {
+    public Field<F> getField() {
         return field;
     }
 
     public String getName() {
         return name;
     }
+
 }

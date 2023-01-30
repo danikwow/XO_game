@@ -7,8 +7,8 @@ import io.test.xo.model.exception.PointAlreadyOccupiedException;
 
 import java.awt.*;
 
-public class MoveControllers {
-    public void applyFigures(final Field field,
+public class MoveController {
+    public void applyFigure(final Field field,
                              final Point point,
                              final Figure figure) throws InvalidPointException,
                                                             PointAlreadyOccupiedException {
